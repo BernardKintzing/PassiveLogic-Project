@@ -1,0 +1,43 @@
+<!--
+  signin.html
+
+  Created by Bernard Kintzing on 2/13/20
+
+  This view allows the user to sign in to their accounts. If 
+  the user does not have an account there is an option to create
+  an account.
+
+  Future Additions: Implement password recovery via email.
+-->
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>PassiveLogic | Sign In</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+
+</body>
+<section id="main" class="wrapper alt">
+    <div class="inner">
+        <div class="form-wrapper">
+            <h1>Sign In</h1>
+
+            <form> 
+                <label for="email">Email</label>
+                <input type="text" placeholder="Enter Email" name="email" required>
+            
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+
+                <input id="signin" type="submit" value="Sign In" class="special"/>
+            </form>
+        </div>
+    </div>
+</section>
+</html>
