@@ -1,20 +1,16 @@
 <!--
-  signin.html
+  signup.html
 
   Created by Bernard Kintzing on 2/13/20
 
-  This view allows the user to sign in to their accounts. If 
-  the user does not have an account there is an option to create
-  an account.
-
-  Future Additions: Implement password recovery via email.
+  This view allows the user to create an accounts.
 -->
 
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>PassiveLogic | Sign In</title>
+    <title>PassiveLogic | Sign Up</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="assets/css/main.css" />
@@ -26,22 +22,24 @@
 <section id="main" class="wrapper alt">
     <div class="inner">
         <div class="form-wrapper">
-            <h1>Sign In</h1>
+            <h1>Sign Up</h1>
 
-            <form>
+            <form> 
+                <label for="name">Name</label>
+                <input type="text" placeholder="Enter Name" name="name" required>
+
                 <label for="email">Email</label>
                 <input type="email" placeholder="Enter Email" name="email" required>
-
+            
                 <label for="password">Password</label>
                 <input type="password" placeholder="Enter Password" name="password" required>
+            
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" placeholder="Confirm Password" name="confirm-password" required>
 
-                <input id="signin" type="submit" value="Sign In" class="special" />
-                <div>
-                    <a href="signup.html">Don't have an account?</a>
-                </div>
+                <input id="signup" type="submit" value="Sign Up" class="special"/>
             </form>
         </div>
     </div>
 </section>
-
 </html>
