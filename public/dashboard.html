@@ -28,7 +28,7 @@
     <nav>
       <ul>
         <li>
-          <button onclick="addBuilding()" class="special">&#43</button>
+          <button onclick="displayBlankModal()" class="special">&#43</button>
         </li>
         <li>
           <button onclick="signOut()">Sign Out</button>
@@ -37,9 +37,9 @@
     </nav>
   </header>
 
-
   <section id="main" class="wrapper alt">
     <div class="inner">
+
       <div id="buildings-wrapper">
         <div id="controls">
           <select id="sort">
@@ -49,9 +49,9 @@
           </select>
 
           <div id="search">
-              <input type="text" name="search" id="search-bar" value="" placeholder="Search" />
+            <input type="text" name="search" id="search-bar" value="" placeholder="Search" />
 
-              <input type="submit" value="Search" />
+            <input type="submit" value="Search" />
           </div>
         </div>
         <div class="building">
@@ -113,6 +113,28 @@
     </div>
   </section>
 
+  <!-- Modal to add and modify buildings -->
+  <div id="modal">
+
+    <!-- Modal content -->
+    <div class="content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <div class="inner">
+        <div class="form">
+          <label for="building-name">Building Name</label>
+          <input id="building-name" type="text" placeholder="Building Name" name="building-name" required>
+
+          <label for="building-description">Building Description</label>
+          <input id="building-description" type="text" placeholder="Building Description" name="building-description" required>
+
+          <input id="add-issue" type="submit" value="Add Issue" onclick="addIssue()" />
+
+          <input id="submit-building" type="submit" value="Submit Building" class="special" onclick="" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Firebase Scripts -->
   <script src="/__/firebase/7.8.0/firebase-app.js"></script>
@@ -120,8 +142,8 @@
   <script src="/__/firebase/7.8.2/firebase-database.js"></script>
   <script src="/__/firebase/init.js"></script>
 
-  <script src="./assets/javascript/firebase.js"></script>
-  <script src="./assets/javascript/controllers/dashboard.js"></script>
+  <script type="text/javascript" src="./assets/javascript/firebase.js"></script>
+  <script type="text/javascript" src="./assets/javascript/controllers/dashboard.js"></script>
 
 </body>
 

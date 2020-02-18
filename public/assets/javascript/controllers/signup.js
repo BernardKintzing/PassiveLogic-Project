@@ -9,14 +9,12 @@ fails the user is displayed appropriate error messages.
  */
 
 function signUp() {
-	console.log("signup");
 	var name = document.querySelector("#name").value;
 	var email = document.querySelector("#email").value;
 	var password = document.querySelector("#password").value;
 	var confirmPassword = document.querySelector("#confirm-password").value;
 
 	if (password == confirmPassword) {
-		console.log("password match");
 		promise = createUserWithEmailAndPassword(name, email, password)
 
 		promise.then(function(result) {

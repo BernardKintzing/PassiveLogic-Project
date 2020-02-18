@@ -8,6 +8,7 @@ This file handles all interactions with Firebase
 
 // Firebase Variables
 var auth = firebase.auth();
+var database = firebase.database();
 
 // User variables
 var user = {
@@ -32,6 +33,7 @@ var user = {
 // If signed out, user is set to null
 auth.onAuthStateChanged(function(updatedUser) {
 	user.data = updatedUser;
+	console.log(updatedUser)
 });
 
 // Sign user in with a given username and email
@@ -71,4 +73,20 @@ async function signOutFirebaseUser() {
 		.catch(function(error) {
 			return error;
 		});
+}
+
+// Firebase Realtime Database functions
+
+function addBuildingToDatabase(buildingName, description, issues) {
+	// TODO: Set requirement for unique building name
+
+	if (!user.data) {
+		database.ref('users/' + user.data.uid + '/buildings/' + buildingName).set({
+			description: description,
+			dateModified: Date.getTime(),
+			issues: issues
+		});
+	} else {
+		return "Unable to retrieve user account"
+	}
 }
