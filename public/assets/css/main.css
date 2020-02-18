@@ -862,10 +862,21 @@ button,
         color: var(--body-accent-text-color);
     }
 
+/* Dashboard */
+
+#dashboard {
+    overflow: hidden;
+}
+
 /* Building */
+
 #buildings-wrapper {
     margin: 2em;
+    max-height: 60vh;
+    box-shadow: 0 0 0.5rem 0 var(--body-box-shadow);
     position: relative;
+    overflow-y: scroll;
+    overflow-x: visible;
 }
     #buildings-wrapper #controls {
         overflow: hidden;
@@ -879,12 +890,10 @@ button,
 
         #buildings-wrapper #controls #search{
             float: right;
-            /* max-width: 10rem; */
         }
         
             #buildings-wrapper #controls #search * {
                 float: left;
-                /* padding: 0; */
                 margin: 1rem;
             }
 
