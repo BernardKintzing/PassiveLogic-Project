@@ -22,26 +22,34 @@
 
 <body>
 
-</body>
-<section id="main" class="wrapper alt">
-    <div class="inner">
-        <div class="form-wrapper">
-            <h1>Sign In</h1>
+    <section id="main" class="wrapper alt">
+        <div class="inner">
+            <div class="form-wrapper">
+                <h1>Sign In</h1>
 
-            <form>
-                <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" required>
+                <div class="form">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="Enter Email" name="email" required>
 
-                <label for="password">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" required>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Enter Password" name="password" required>
 
-                <input id="signin" type="submit" value="Sign In" class="special" />
-                <div>
-                    <a href="signup.html">Don't have an account?</a>
-                </div>
-            </form>
+                    <input id="signin" type="submit" value="Sign In" class="special" onclick="signIn()"/>
+                    <div>
+                        <a href="signup.html">Don't have an account?</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- Firebase Scripts -->
+    <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script src="./assets/javascript/firebase.js"></script>
+    <script src="./assets/javascript/controllers/signin.js"></script>   
+
+</body>
 </html>

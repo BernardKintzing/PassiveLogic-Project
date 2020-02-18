@@ -18,28 +18,38 @@
 
 <body>
 
-</body>
-<section id="main" class="wrapper alt">
-    <div class="inner">
-        <div class="form-wrapper">
-            <h1>Sign Up</h1>
+    <section id="main" class="wrapper alt">
+        <div class="inner">
+            <div class="form-wrapper">
+                <h1>Sign Up</h1>
 
-            <form> 
-                <label for="name">Name</label>
-                <input type="text" placeholder="Enter Name" name="name" required>
+                <div class="form">
+                    <label for="name">Name</label>
+                    <input id="name" type="text" placeholder="Enter Name" name="name" required>
 
-                <label for="email">Email</label>
-                <input type="email" placeholder="Enter Email" name="email" required>
-            
-                <label for="password">Password</label>
-                <input type="password" placeholder="Enter Password" name="password" required>
-            
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" placeholder="Confirm Password" name="confirm-password" required>
+                    <label for="email">Email</label>
+                    <input id="email" type="email" placeholder="Enter Email" name="email" required>
 
-                <input id="signup" type="submit" value="Sign Up" class="special"/>
-            </form>
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Enter Password" name="password" required>
+
+                    <label for="confirm-password">Confirm Password</label>
+                    <input id="confirm-password" type="password" placeholder="Confirm Password" name="confirm-password" required>
+
+                    <input id="signup" type="submit" value="Sign Up" class="special" onclick="signUp()"/>
+                </form>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+
+
+    <!-- Firebase Scripts -->
+    <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+    <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+    <script src="/__/firebase/init.js"></script>
+
+    <script type="text/javascript" src="./assets/javascript/firebase.js"></script>
+    <script type="text/javascript" src="./assets/javascript/controllers/signup.js"></script>   
+</body>
 </html>

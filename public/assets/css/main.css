@@ -490,15 +490,15 @@ h1, h2, h3, h4, h5, h6 {
 		width: 30rem;
 	}
 
-	form {
+	.form {
 		margin: 0 0 2.5rem 0;
 	}
 
-		header.major + form {
+		header.major + .form {
 			margin-top: -1.5rem;
 		}
 
-		form.combined {
+		.form.combined {
 			display: -moz-flex;
 			display: -webkit-flex;
 			display: -ms-flex;
@@ -514,11 +514,11 @@ h1, h2, h3, h4, h5, h6 {
 			width: 30rem;
 		}
 
-			form.combined input[type="text"],
-			form.combined input[type="password"],
-			form.combined input[type="email"],
-			form.combined select,
-			form.combined textarea {
+			.form.combined input[type="text"],
+			.form.combined input[type="password"],
+			.form.combined input[type="email"],
+			.form.combined select,
+			.form.combined textarea {
 				-moz-flex-grow: 1;
 				-webkit-flex-grow: 1;
 				-ms-flex-grow: 1;
@@ -531,7 +531,7 @@ h1, h2, h3, h4, h5, h6 {
 				border-top-right-radius: 0;
 			}
 
-			form.combined input[type="submit"] {
+			.form.combined input[type="submit"] {
 				-moz-flex-grow: 0;
 				-webkit-flex-grow: 0;
 				-ms-flex-grow: 0;
@@ -546,23 +546,23 @@ h1, h2, h3, h4, h5, h6 {
 
 		@media screen and (max-width: 480px) {
 
-			form.combined {
+			.form.combined {
 				-moz-flex-direction: column;
 				-webkit-flex-direction: column;
 				-ms-flex-direction: column;
 				flex-direction: column;
 			}
 
-				form.combined input[type="text"],
-				form.combined input[type="password"],
-				form.combined input[type="email"],
-				form.combined select,
-				form.combined textarea {
+				.form.combined input[type="text"],
+				.form.combined input[type="password"],
+				.form.combined input[type="email"],
+				.form.combined select,
+				.form.combined textarea {
 					border-radius: 4px;
 					margin: 0 0 1em 0;
 				}
 
-				form.combined input[type="submit"] {
+				.form.combined input[type="submit"] {
 					border-radius: 4px;
 				}
 
