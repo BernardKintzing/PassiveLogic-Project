@@ -36,8 +36,8 @@ auth.onAuthStateChanged(function(updatedUser) {
 
 // Sign user in with a given username and email
 async function signInWithEmailAndPassword(email, password) {
-
-	return auth.signInWithEmailAndPassword(email, password)
+	return auth
+		.signInWithEmailAndPassword(email, password)
 		.then(function(result) {
 			return result;
 		})
@@ -48,8 +48,8 @@ async function signInWithEmailAndPassword(email, password) {
 
 // Create a user account with given name, email, and password
 async function createUserWithEmailAndPassword(name, email, password) {
-	
-	return auth.createUserWithEmailAndPassword(email, password)
+	return auth
+		.createUserWithEmailAndPassword(email, password)
 		.then(function(result) {
 			result.user.updateProfile({
 				displayName: name.value
@@ -62,12 +62,13 @@ async function createUserWithEmailAndPassword(name, email, password) {
 }
 
 // Sign out the current user
-function signOutFirebaseUser() {
-	auth.signOut()
+async function signOutFirebaseUser() {
+	return auth
+		.signOut()
 		.then(function() {
-			// Sign-out successful.
+			return true;
 		})
 		.catch(function(error) {
-			// An error happened.
+			return error;
 		});
 }
