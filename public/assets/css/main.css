@@ -861,3 +861,60 @@ button,
         background-color: var(--body-accent-color);
         color: var(--body-accent-text-color);
     }
+
+/* Building */
+#buildings-wrapper {
+    margin: 2em;
+    position: relative;
+}
+    #buildings-wrapper #controls {
+        overflow: hidden;
+    }
+
+        #buildings-wrapper #controls #sort{
+            float: left;
+            max-width: 10rem;
+            margin: 1rem;
+        }
+
+        #buildings-wrapper #controls #search{
+            float: right;
+            /* max-width: 10rem; */
+        }
+        
+            #buildings-wrapper #controls #search * {
+                float: left;
+                /* padding: 0; */
+                margin: 1rem;
+            }
+
+            #buildings-wrapper #controls #search #search-bar{
+                width: 20rem;
+                max-width: 20rem;
+            }
+
+            #buildings-wrapper #controls #search input[type="submit"] {
+                height: 3rem;
+                border-radius: 4px;
+                border: solid 3px;
+                border-color: var(--input-background-color);
+            }
+
+
+    #buildings-wrapper .building {
+        height: 5rem;
+        max-height: 5rem;
+        box-shadow: 0 0 0.5rem 0 var(--body-box-shadow);
+        margin: .5rem 0;
+    }
+
+        #buildings-wrapper .building h2 {
+            font-size: 2em;
+            float: left;
+            margin: 1rem;
+        }
+
+        #buildings-wrapper .building button {
+            float: right;
+            margin: 1rem;
+        }

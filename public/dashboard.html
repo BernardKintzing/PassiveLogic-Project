@@ -3,29 +3,89 @@
 
   Created by Bernard Kintzing on 2/17/20
 
+  This file displays a dashboard of all the users buildings.
+  The user will be able to add, delete and modify buildings.
+  From this page the user will also be able to sort the 
+  buildings by name, date modified or number of issues.
+  The user will also be able to search for a building by
+  name.
 -->
 
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>PassiveLogic | Dashboard</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="assets/css/main.css" />
+  <title>PassiveLogic | Dashboard</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
 <body>
 
-    <button onclick="signOut()">Sign Out</button>
+  <header id="header">
+    <h1>Dashboard</h1>
+    <nav>
+      <ul>
+        <li>
+          <button onclick="addBuilding()" class="special">&#43</button>
+        </li>
+        <li>
+          <button onclick="signOut()">Sign Out</button>
+        </li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Firebase Scripts -->
-    <script src="/__/firebase/7.8.0/firebase-app.js"></script>
-    <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
-    <script src="/__/firebase/init.js"></script>
 
-    <script src="./assets/javascript/firebase.js"></script>
-    <script src="./assets/javascript/controllers/dashboard.js"></script>   
+  <section id="main" class="wrapper alt">
+    <div class="inner">
+      <div id="buildings-wrapper">
+        <div id="controls">
+          <select id="sort">
+            <option value="alphabetically">Alphabetically</option>
+            <option value="date-modified">Date Modified</option>
+            <option value="Issues">Issues </option>
+          </select>
+
+          <div id="search">
+            <!-- <div> -->
+              <input type="text" name="search" id="search-bar" value="" placeholder="Search" />
+            <!-- </div>
+            <div> -->
+              <input type="submit" value="Search" />
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="building">
+          <h2>Building 1</h2>
+          <button>View More</button>
+        </div>
+
+        <div class="building">
+          <h2>Building 2</h2>
+          <button>View More</button>
+        </div>
+
+        <div class="building">
+          <h2>Building 3</h2>
+          <button>View More</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Firebase Scripts -->
+  <script src="/__/firebase/7.8.0/firebase-app.js"></script>
+  <script src="/__/firebase/7.8.0/firebase-auth.js"></script>
+  <script src="/__/firebase/7.8.2/firebase-database.js"></script>
+  <script src="/__/firebase/init.js"></script>
+
+  <script src="./assets/javascript/firebase.js"></script>
+  <script src="./assets/javascript/controllers/dashboard.js"></script>
 
 </body>
+
 </html>
