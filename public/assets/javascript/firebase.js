@@ -33,7 +33,6 @@ var user = {
 // If signed out, user is set to null
 auth.onAuthStateChanged(function(updatedUser) {
 	user.data = updatedUser;
-	console.log(updatedUser)
 });
 
 // Sign user in with a given username and email
@@ -54,7 +53,7 @@ async function createUserWithEmailAndPassword(name, email, password) {
 		.createUserWithEmailAndPassword(email, password)
 		.then(function(result) {
 			result.user.updateProfile({
-				displayName: name.value
+				displayName: name
 			});
 			return result;
 		})

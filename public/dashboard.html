@@ -127,10 +127,14 @@
           <label for="building-description">Building Description</label>
           <input id="building-description" type="text" placeholder="Building Description" name="building-description" required>
 
-          <input id="add-issue" type="submit" value="Add Issue" onclick="addIssue()" />
+          <label id="issues-label" for="issues" class="hidden">Issues</label>
+          <div id="issues">
+            
+          </div>
+          
+          <input id="add-issue" type="submit" value="Add Issue" onclick="addIssueField()" />
 
           <input id="submit-building" type="submit" value="Submit Building" class="special" onclick="" />
-          </form>
         </div>
       </div>
     </div>

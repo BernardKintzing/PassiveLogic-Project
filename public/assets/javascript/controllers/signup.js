@@ -27,5 +27,7 @@ function signUp() {
 				alert(result)
 			}
 		})
+	} else {
+		alert("Passwords do not match.")
 	}
 }
