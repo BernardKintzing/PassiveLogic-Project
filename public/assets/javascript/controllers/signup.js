@@ -15,13 +15,15 @@ function signUp() {
 	var confirmPassword = document.querySelector("#confirm-password").value;
 
 	if (password == confirmPassword) {
-		promise = createUserWithEmailAndPassword(name, email, password)
+		var promise = createUserWithEmailAndPassword(email, password)
 
 		promise.then(function(result) {
 	
 			if (result.user != null) {
 				// User is successfully logged in
+				updateUserDisplayName(name)
 				window.location.replace("dashboard.html");
+
 			} else {
 				// Error attempting to sign in user
 				alert(result)

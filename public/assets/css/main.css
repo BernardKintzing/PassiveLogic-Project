@@ -881,7 +881,7 @@ button,
     box-shadow: 0 0 0.5rem 0 var(--body-box-shadow);
     position: relative;
     overflow-y: scroll;
-    overflow-x: visible;
+    overflow-x: hidden;
 }
     #buildings-wrapper #controls {
         overflow: hidden;
@@ -898,12 +898,12 @@ button,
         }
         
             #buildings-wrapper #controls #search * {
-                float: left;
+                float: right;
                 margin: 1rem;
             }
 
             #buildings-wrapper #controls #search #search-bar{
-                width: 20rem;
+                /* width: 20rem; */
                 max-width: 20rem;
             }
 
@@ -920,12 +920,20 @@ button,
         max-height: 5rem;
         box-shadow: 0 0 0.5rem 0 var(--body-box-shadow);
         margin: .5rem 0;
+        clear: both;
     }
 
         #buildings-wrapper .building h2 {
             font-size: 2em;
             float: left;
             margin: 1rem;
+        }
+
+        #buildings-wrapper .building p {
+            display: block ;
+            margin: 1rem 0 0 0 ;
+            overflow:hidden;
+            white-space: nowrap;
         }
 
         #buildings-wrapper .building button {

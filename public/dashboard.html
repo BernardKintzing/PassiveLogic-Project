@@ -24,7 +24,7 @@
 <body id="dashboard">
 
   <header id="header">
-    <h1>Dashboard</h1>
+    <h1 id="dashboard-title">Dashboard</h1>
     <nav>
       <ul>
         <li>
@@ -42,74 +42,19 @@
 
       <div id="buildings-wrapper">
         <div id="controls">
-          <select id="sort">
+          <select id="sort" onchange="sortBuildings(this)">
             <option value="alphabetically">Alphabetically</option>
             <option value="date-modified">Date Modified</option>
-            <option value="Issues">Issues </option>
+            <option value="Issues">Issues</option>
           </select>
 
           <div id="search">
-            <input type="text" name="search" id="search-bar" value="" placeholder="Search" />
+            <input id="search-field" type="text" name="search" value="" placeholder="Search" />
 
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" onclick="searchBuildings()"/>
           </div>
         </div>
-        <div class="building">
-          <h2>Building 1</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 2</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-        <div class="building">
-          <h2>Building 3</h2>
-          <button>View More</button>
-        </div>
-
-      </div>
+        <div id="buildings"></div>
     </div>
   </section>
 
@@ -125,16 +70,16 @@
           <input id="building-name" type="text" placeholder="Building Name" name="building-name" required>
 
           <label for="building-description">Building Description</label>
-          <input id="building-description" type="text" placeholder="Building Description" name="building-description" required>
+          <input id="building-description" type="text" placeholder="Building Description" name="building-description"
+            required>
 
           <label id="issues-label" for="issues" class="hidden">Issues</label>
-          <div id="issues">
-            
-          </div>
-          
+          <div id="issues"></div>
+
           <input id="add-issue" type="submit" value="Add Issue" onclick="addIssueField()" />
 
-          <input id="submit-building" type="submit" value="Submit Building" class="special" onclick="" />
+          <input id="submit-building" type="submit" value="Submit Building" class="special"
+            onclick="submitBuilding()" />
         </div>
       </div>
     </div>
