@@ -24,15 +24,14 @@ user.registerListener(function(val) {
 	if (!val) {
 		window.location.replace("index.html");
 	} else {
-
 		// If user has a displayName, update the
 		// dashboard title
 		var displayName = val.displayName;
 		if (displayName != null) {
-			dashboardTitle.innerHTML = displayName + "'s Dashboard"
+			dashboardTitle.innerHTML = displayName + "'s Dashboard";
 		}
 
-		// After user is signed in all buildings 
+		// After user is signed in all buildings
 		// are retrieved from the database.
 		promise = retrieveBuildingsFromDatabase();
 		promise.then(function(result) {
@@ -88,6 +87,7 @@ function submitBuilding() {
 		if (result == true) {
 			closeModal();
 			alert("Building successfully added");
+			populateBuildings(buildings);
 		} else {
 			alert(result);
 		}
@@ -119,16 +119,15 @@ function sortBuildings(select) {
 }
 
 function searchBuildings() {
-	console.log("IN")
-	var query = searchField.value
-	var queryResult = []
+	var query = searchField.value;
+	var queryResult = [];
 
-	for(i = 0; i < buildings.length; i++) {
-		if(buildings[i].name.toLowerCase().includes(query.toLowerCase())) {
-			queryResult.push(buildings[i])
+	for (i = 0; i < buildings.length; i++) {
+		if (buildings[i].name.toLowerCase().includes(query.toLowerCase())) {
+			queryResult.push(buildings[i]);
 		}
 	}
-	
+
 	populateBuildings(queryResult);
 }
 

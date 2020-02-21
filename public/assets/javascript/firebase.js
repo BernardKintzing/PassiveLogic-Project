@@ -39,6 +39,7 @@ function building() {
 
 // Store all buildings
 var buildings = [];
+var buildingParameter = "Alphabetically";
 
 // Firebase Auth Functions
 
@@ -116,7 +117,7 @@ async function retrieveBuildingsFromDatabase() {
 						.child("dateModified")
 						.val();
 
-					// If there are no building issues, set issues to 
+					// If there are no building issues, set issues to
 					// an empty array rather than null
 					buildingIssues = buildingSnapshot.child("issues").val();
 					if (buildingIssues != null) {
@@ -154,6 +155,17 @@ async function addBuildingToDatabase(name, description, issues) {
 			})
 			.then(function() {
 				// Building successfully added
+
+				// Update local buildings array
+				var newBuilding = building();
+
+				newBuilding.name = name;
+				newBuilding.description = description;
+				newBuilding.issues = issues;
+				newBuilding.dateModified = now;
+
+				buildings.push(newBuilding);
+				buildings = sortBuildingsByParameter(buildings, buildingParameter);
 				return true;
 			})
 			.catch(function(error) {
@@ -166,6 +178,9 @@ async function addBuildingToDatabase(name, description, issues) {
 
 // Sort the buildings alphabetically using merge sort
 function sortBuildingsByParameter(unsortedBuildings, parameter) {
+	// Set current sort to parameter
+	buildingParameter = parameter;
+
 	// No need to sort the array if there is one building or less
 	if (unsortedBuildings.length <= 1) {
 		return unsortedBuildings;
@@ -214,13 +229,13 @@ function mergeBuildingsAlphabetically(left, right) {
 }
 
 // Sort the buildings by last date modified.
-// More recently modified at the start of the 
+// More recently modified at the start of the
 // array.
 function mergeBuildingsByDate(left, right) {
 	let resultArray = [];
 
 	while (left.length && right.length) {
-		if (left[0].dateModified < right[0].dateModified) {
+		if (left[0].dateModified > right[0].dateModified) {
 			resultArray.push(left.shift());
 		} else {
 			resultArray.push(right.shift());
