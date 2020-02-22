@@ -79,6 +79,13 @@ function submitBuilding() {
 				modal.data = buildingNameValue;
 			}
 		});
+	} else {
+		var checkBuilding = getBuildingByName(buildingNameValue)
+
+		if (checkBuilding != null) {
+			alert("A building already exists with that name")
+			return
+		}
 	}
 
 	// Retrive building issues
@@ -125,6 +132,8 @@ function populateBuildings(content) {
 	}
 }
 
+// Sort the buildings based on user 
+// selected parameter
 function sortBuildings(select) {
 	buildings = sortBuildingsByParameter(
 		buildings,
@@ -133,6 +142,7 @@ function sortBuildings(select) {
 	populateBuildings(buildings);
 }
 
+// Remove the building from database
 function removeBuilding(name) {
 	promise = removeBuildingFromDatabase(name)
 	promise.then(function(result){
