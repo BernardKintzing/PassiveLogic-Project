@@ -139,7 +139,6 @@ async function retrieveBuildingsFromDatabase() {
 // Attempt to add a building to the database, if the insert
 // fails the error message is sent back to the user.
 async function addBuildingToDatabase(name, description, issues) {
-	// TODO: Set requirement for unique building name
 
 	if (user.data) {
 		// Retrieve current date formateed as yyyy-mm-ddThh:mm:ss
