@@ -11,6 +11,7 @@ If so the user is redirected to their dashboard.
 // automatically redirected to the dashboard.
 user.registerListener(function(val) {
 	if (val != null) {
+		// User is signed in 
 		window.location.replace("dashboard.html");
 	}
 });

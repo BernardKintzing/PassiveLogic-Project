@@ -27,7 +27,6 @@ var user = {
 };
 
 // Building object
-
 function building() {
 	return {
 		name: "",
@@ -88,6 +87,7 @@ async function signOutFirebaseUser() {
 		});
 }
 
+// Update the users display name in Firebase auth
 function updateUserDisplayName(name) {
 	user.data.updateProfile({
 		displayName: name
@@ -123,6 +123,7 @@ async function retrieveBuildingsFromDatabase() {
 						newBuilding.issues = buildingIssues;
 					}
 
+					// Store building in local storage
 					buildings.push(newBuilding);
 				});
 
@@ -162,6 +163,7 @@ async function addBuildingToDatabase(name, description, issues) {
 				newBuilding.issues = issues;
 				newBuilding.dateModified = now;
 
+				// Add building to local storage
 				buildings.push(newBuilding);
 				buildings = sortBuildingsByParameter(
 					buildings,
@@ -185,6 +187,7 @@ async function removeBuildingFromDatabase(name) {
 		.ref("users/" + user.data.uid + "/buildings/" + name)
 		.remove()
 		.then(function() {
+			// Building successfully removed
 			for(i = 0; i < buildings.length; i++) {
 				if (buildings[i].name == name) {
 					buildings.splice(i, 1);
@@ -238,6 +241,7 @@ function sortBuildingsByParameter(unsortedBuildings, parameter) {
 function mergeBuildingsAlphabetically(left, right) {
 	let resultArray = [];
 
+	// Sort the left and right array
 	while (left.length && right.length) {
 		if (left[0].name < right[0].name) {
 			resultArray.push(left.shift());
@@ -245,6 +249,8 @@ function mergeBuildingsAlphabetically(left, right) {
 			resultArray.push(right.shift());
 		}
 	}
+
+	// Combine final variable left in array
 	resultArray = resultArray.concat(left.slice().concat(right.slice()));
 	return resultArray;
 }
@@ -255,6 +261,7 @@ function mergeBuildingsAlphabetically(left, right) {
 function mergeBuildingsByDate(left, right) {
 	let resultArray = [];
 
+	// Sort the left and right array
 	while (left.length && right.length) {
 		if (left[0].dateModified > right[0].dateModified) {
 			resultArray.push(left.shift());
@@ -262,6 +269,8 @@ function mergeBuildingsByDate(left, right) {
 			resultArray.push(right.shift());
 		}
 	}
+
+	// Combine final variable left in arrays
 	resultArray = resultArray.concat(left.slice().concat(right.slice()));
 	return resultArray;
 }
@@ -272,6 +281,7 @@ function mergeBuildingsByDate(left, right) {
 function mergeBuildingsIssuesCount(left, right) {
 	let resultArray = [];
 
+	// Sort the left and right array
 	while (left.length && right.length) {
 		if (left[0].issues.length > right[0].issues.length) {
 			resultArray.push(left.shift());
@@ -279,6 +289,8 @@ function mergeBuildingsIssuesCount(left, right) {
 			resultArray.push(right.shift());
 		}
 	}
+
+	// Combine final variable left in arrays
 	resultArray = resultArray.concat(left.slice().concat(right.slice()));
 	return resultArray;
 }
@@ -293,5 +305,6 @@ function getBuildingByName(name) {
 		}
 	}
 
+	// No building exists with given name
 	return null;
 }

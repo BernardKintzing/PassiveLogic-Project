@@ -42,12 +42,14 @@
 
       <div id="buildings-wrapper">
         <div id="controls">
+          <!-- Sort buildings by different parameters -->
           <select id="sort" onchange="sortBuildings(this)">
             <option value="alphabetically">Alphabetically</option>
             <option value="date-modified">Date Modified</option>
             <option value="Issues">Issues</option>
           </select>
 
+          <!-- Allow user to search through buildings -->
           <div id="search">
             <input id="search-field" type="text" name="search" value="" placeholder="Search" />
 

@@ -71,17 +71,23 @@ function submitBuilding() {
 	var buildingDescriptionValue = buildingDescription.value;
 	var issueValues = [];
 
+	// Check is user is creating new building or 
+	// updating a current building
 	if (modal.data != "create-building") {
+		// User is editing building
 		promise = removeBuildingFromDatabase(modal.data);
 
 		promise.then(function(result) {
 			if (result == modal.data) {
+				// Update div data with updated building name
 				modal.data = buildingNameValue;
 			}
 		});
 	} else {
+		// User is creating a new building
 		var checkBuilding = getBuildingByName(buildingNameValue)
 
+		// Require that building names are unique
 		if (checkBuilding != null) {
 			alert("A building already exists with that name")
 			return
@@ -91,10 +97,12 @@ function submitBuilding() {
 	// Retrive building issues
 	issueElements = issues.getElementsByTagName("input");
 
+	// Update local storage of issues
 	for (i = 0; i < issueElements.length; i++) {
 		issueValues.push(issueElements[i].value);
 	}
 
+	// Add building to database
 	promise = addBuildingToDatabase(
 		buildingNameValue,
 		buildingDescriptionValue,
@@ -103,8 +111,11 @@ function submitBuilding() {
 
 	promise.then(function(result) {
 		if (result == true) {
+			// Building successfully added to database
 			closeModal();
 			alert("Building successfully added");
+
+			// Update UI
 			populateBuildings(buildings);
 		} else {
 			alert(result);
@@ -112,10 +123,12 @@ function submitBuilding() {
 	});
 }
 
+// Update the buildings UI with given buildings
 function populateBuildings(content) {
 	var buildingsElement = document.getElementById("buildings");
 	buildingsElement.innerHTML = "";
 
+	// Create new building HTML element
 	for (i = 0; i < content.length; i++) {
 		buildingsElement.innerHTML +=
 			'<div class="building"><h2>' +
@@ -146,9 +159,8 @@ function sortBuildings(select) {
 function removeBuilding(name) {
 	promise = removeBuildingFromDatabase(name)
 	promise.then(function(result){
-		console.log(result)
 		if(result == name) {
-			console.log("ins")
+			// Building successfully removed from databse
 			populateBuildings(buildings)
 		} else {
 			alert(error)
@@ -156,6 +168,7 @@ function removeBuilding(name) {
 	})
 }
 
+// Search though all buildings with user inputed query
 function searchBuildings() {
 	var query = searchField.value;
 	var queryResult = [];
@@ -166,10 +179,16 @@ function searchBuildings() {
 		}
 	}
 
+	// Update the UI with the buidlings whos name
+	// matches user query
 	populateBuildings(queryResult);
 }
 
+// Display modal with information from the building 
+// user is attempting to edit
 function displayPopulatedModal(name) {
+
+	// Retrieve building based on name
 	var building = getBuildingByName(name);
 
 	if (building != null) {
@@ -178,9 +197,11 @@ function displayPopulatedModal(name) {
 		issuesDict = {};
 		issues.innerHTML = "";
 
+		// Populate UI with building name and description
 		buildingName.value = building.name;
 		buildingDescription.value = building.description;
 
+		// Populate UI with building issues
 		if (building.issues.length > 0) {
 			issuesLabel.classList.remove("hidden");
 			for (i = 0; i < building.issues.length; i++) {
@@ -206,6 +227,7 @@ function displayPopulatedModal(name) {
 			issuesLabel.classList.add("hidden");
 		}
 
+		// Display modal
 		modal.data = building.name;
 		modal.style.display = "block";
 	}
@@ -248,6 +270,7 @@ function addIssueField() {
 		issuesLabel.classList.remove("hidden");
 	}
 
+	// Create blank UI issue input field
 	var newIssue = document.createElement("div");
 	newIssue.classList.add("issue-wrapper");
 	newIssue.innerHTML =
