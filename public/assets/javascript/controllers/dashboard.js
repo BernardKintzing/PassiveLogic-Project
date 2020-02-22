@@ -9,8 +9,9 @@ var dashboardTitle = document.getElementById("dashboard-title");
 var searchField = document.getElementById("search-field");
 var buildingName = document.getElementById("building-name");
 var buildingDescription = document.getElementById("building-description");
-var issues = document.getElementById("issues");
 var issuesLabel = document.getElementById("issues-label");
+var issues = document.getElementById("issues");
+var submitBuildingButton = document.getElementById("submit-building");
 
 // Unique identifiers for each issue
 var issueID = 0;
@@ -70,6 +71,16 @@ function submitBuilding() {
 	var buildingDescriptionValue = buildingDescription.value;
 	var issueValues = [];
 
+	if (modal.data != "create-building") {
+		promise = removeBuildingFromDatabase(modal.data);
+
+		promise.then(function(result) {
+			if (result == modal.data) {
+				modal.data = buildingNameValue;
+			}
+		});
+	}
+
 	// Retrive building issues
 	issueElements = issues.getElementsByTagName("input");
 
@@ -102,7 +113,11 @@ function populateBuildings(content) {
 		buildingsElement.innerHTML +=
 			'<div class="building"><h2>' +
 			content[i].name +
-			"</h2><button>View More</button><p>" +
+			"</h2><button onclick=\"removeBuilding('" +
+			content[i].name +
+			"')\">Remove Building</button><button onclick=\"displayPopulatedModal('" +
+			content[i].name +
+			"')\">View More</button><p>" +
 			content[i].description +
 			"</p><p>" +
 			content[i].issues.length +
@@ -118,6 +133,19 @@ function sortBuildings(select) {
 	populateBuildings(buildings);
 }
 
+function removeBuilding(name) {
+	promise = removeBuildingFromDatabase(name)
+	promise.then(function(result){
+		console.log(result)
+		if(result == name) {
+			console.log("ins")
+			populateBuildings(buildings)
+		} else {
+			alert(error)
+		}
+	})
+}
+
 function searchBuildings() {
 	var query = searchField.value;
 	var queryResult = [];
@@ -131,16 +159,60 @@ function searchBuildings() {
 	populateBuildings(queryResult);
 }
 
+function displayPopulatedModal(name) {
+	var building = getBuildingByName(name);
+
+	if (building != null) {
+		// Reset unique issue IDs
+		issueID = 0;
+		issuesDict = {};
+		issues.innerHTML = "";
+
+		buildingName.value = building.name;
+		buildingDescription.value = building.description;
+
+		if (building.issues.length > 0) {
+			issuesLabel.classList.remove("hidden");
+			for (i = 0; i < building.issues.length; i++) {
+				var newIssue = document.createElement("div");
+				newIssue.classList.add("issue-wrapper");
+				newIssue.innerHTML =
+					'<input id="issue' +
+					issueID +
+					'" type="text" placeholder="New Issue" name="issue' +
+					issueID +
+					'" value="' +
+					building.issues[i] +
+					'"required> <span class="close" onclick="removeIssueField(' +
+					issueID +
+					')">&times;</span>';
+
+				issues.appendChild(newIssue);
+
+				issuesDict[issueID] = newIssue;
+				issueID++;
+			}
+		} else {
+			issuesLabel.classList.add("hidden");
+		}
+
+		modal.data = building.name;
+		modal.style.display = "block";
+	}
+}
+
 // Display an empty modal for user to
 // create a new building
 function displayBlankModal() {
 	// Reset the modal to a blank form
+	issueID = 0;
 	buildingName.value = "";
 	buildingDescription.value = "";
 	issues.innerHTML = "";
 	issuesLabel.classList.add("hidden");
 	issuesDict = {};
 
+	modal.data = "create-building";
 	modal.style.display = "block";
 }
 

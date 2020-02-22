@@ -89,7 +89,6 @@ async function signOutFirebaseUser() {
 }
 
 function updateUserDisplayName(name) {
-	console.log(user.data);
 	user.data.updateProfile({
 		displayName: name
 	});
@@ -165,7 +164,10 @@ async function addBuildingToDatabase(name, description, issues) {
 				newBuilding.dateModified = now;
 
 				buildings.push(newBuilding);
-				buildings = sortBuildingsByParameter(buildings, buildingParameter);
+				buildings = sortBuildingsByParameter(
+					buildings,
+					buildingParameter
+				);
 				return true;
 			})
 			.catch(function(error) {
@@ -174,6 +176,26 @@ async function addBuildingToDatabase(name, description, issues) {
 	} else {
 		return "Unable to retrieve user account";
 	}
+}
+
+// Attempt to remove building from database. If
+// building is successfully removed it is then 
+// removed from local storage.
+async function removeBuildingFromDatabase(name) {
+	return database
+		.ref("users/" + user.data.uid + "/buildings/" + name)
+		.remove()
+		.then(function() {
+			for(i = 0; i < buildings.length; i++) {
+				if (buildings[i].name == name) {
+					buildings.splice(i, 1);
+				}
+			}
+			return name;
+		})
+		.catch(function(error) {
+			return error;
+		});
 }
 
 // Sort the buildings alphabetically using merge sort
@@ -260,4 +282,17 @@ function mergeBuildingsIssuesCount(left, right) {
 	}
 	resultArray = resultArray.concat(left.slice().concat(right.slice()));
 	return resultArray;
+}
+
+// Return the corrent building base on
+// building name. If no building is found
+// null is returned
+function getBuildingByName(name) {
+	for (i = 0; i < buildings.length; i++) {
+		if (buildings[i].name == name) {
+			return buildings[i];
+		}
+	}
+
+	return null;
 }
